@@ -1,7 +1,10 @@
+import NavBar from "./components/NavBar";
+
 function App() {
   return (
     <div className="App">
-      <p>teste</p>
+      <NavBar />
+      <p>PokeAPI</p>
     </div>
   );
 }
