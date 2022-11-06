@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { searchPokemon } from "./api";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -7,8 +8,9 @@ const SearchBar = () => {
     setSearch(e.target.value);
   };
 
-  const handleClick = (e) => {
-    console.log("Clicou!");
+  const handleClick = async (e) => {
+    const data = await searchPokemon(search);
+    console.log(data);
   };
 
   return (
