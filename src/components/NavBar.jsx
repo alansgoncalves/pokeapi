@@ -4,9 +4,11 @@ import Logo from "./images/pokemon.png";
 
 const NavBar = () => {
   return (
-    <div className="navbar">
-      <img src={Logo} alt="" />
-      <div>♥️</div>
+    <div className="cont-navbar">
+      <div className="logo">
+        <img src={Logo} alt="" width="160px" />
+      </div>
+      <div className="heart-navbar">♥️</div>
     </div>
   );
 };

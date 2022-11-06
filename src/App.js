@@ -1,10 +1,11 @@
 import NavBar from "./components/NavBar";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <p>PokeAPI</p>
+      <SearchBar />
     </div>
   );
 }
