@@ -107,3 +107,17 @@
   margin-right: 10px;
   text-transform: capitalize;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagi-text {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.pagination button {
+  cursor: pointer;
+}

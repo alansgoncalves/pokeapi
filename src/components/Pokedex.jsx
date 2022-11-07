@@ -1,21 +1,41 @@
 import React from "react";
 import "../style/style.css";
 import Pokemons from "./Pokemons";
+import Pagination from "./Pagination";
 
 const Pokedex = (props) => {
-  const { pokemons } = props;
-  console.log("teste2", pokemons);
+  const { pokemons, page, setPage, total, loading } = props;
+
+  const lastPage = () => {
+    const nextPage = Math.max(page - 1, 0);
+    setPage(nextPage);
+  };
+
+  const nextPage = () => {
+    const nextPage = Math.min(page + 1, total);
+    setPage(nextPage);
+  };
+
   return (
     <div>
       <div className="cont-pagination">
         <h1>Pokedex</h1>
-        <div>Pagination</div>
+        <Pagination
+          page={page}
+          totalPages={total}
+          onLeftClick={lastPage}
+          onRightClick={nextPage}
+        />
       </div>
-      <div className="poke-list">
-        {pokemons.map((pokemon, index) => {
-          return <Pokemons pokemon={pokemon} key={index} />;
-        })}
-      </div>
+      {loading ? (
+        <div>Carregando Pokemons...</div>
+      ) : (
+        <div className="poke-list">
+          {pokemons.map((pokemon, index) => {
+            return <Pokemons pokemon={pokemon} key={index} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 const Pokemons = (props) => {
   const { pokemon } = props;
-  console.log("teste", pokemon);
+
   return (
     <div className="pokemon-card">
       <div className="poke-img">
