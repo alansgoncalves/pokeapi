@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { getPokemons, getPokemonsData } from "./api";
 import NavBar from "./components/NavBar";
 import Pokedex from "./components/Pokedex";
 import SearchBar from "./components/SearchBar";
-import { FavoriteProvider } from "./context/favoriteContext";
+import { FavoriteProvider } from "./context/FavoriteContext";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);

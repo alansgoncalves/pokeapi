@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import FavoriteContext from "../context/favoriteContext";
+import FavoriteContext from "../context/FavoriteContext";
 import "../style/style.css";
 import Logo from "./images/pokemon.png";
 
