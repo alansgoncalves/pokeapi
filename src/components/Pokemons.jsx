@@ -8,17 +8,23 @@ const Pokemons = (props) => {
       <div className="poke-img">
         <img src={pokemon.sprites.front_default} alt="" />
       </div>
-      <div>
-        <h3>{pokemon.name}</h3>
-        <div>#{pokemon.id}</div>
-      </div>
-      <div>
-        <div>
-          {pokemon.types.map((type, index) => {
-            return <div key={index}>{type.name}</div>;
-          })}
+      <div className="card-body">
+        <div className="card-top">
+          <h3>{pokemon.name}</h3>
+          <p>#{pokemon.id}</p>
         </div>
-        <div>♥️</div>
+        <div className="card-bottom">
+          <div className="poke-type">
+            {pokemon.types.map((type, index) => {
+              return (
+                <div key={index} className="poke-text">
+                  {type.type.name}
+                </div>
+              );
+            })}
+          </div>
+          <div className="fav-poke">&#10084;&#65039;</div>
+        </div>
       </div>
     </div>
   );

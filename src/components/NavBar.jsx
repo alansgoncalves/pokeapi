@@ -8,7 +8,7 @@ const NavBar = () => {
       <div className="logo">
         <img src={Logo} alt="" width="160px" />
       </div>
-      <div className="heart-navbar">♥️</div>
+      <div className="heart-navbar">🖤</div>
     </div>
   );
 };
