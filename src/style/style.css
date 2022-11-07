@@ -56,7 +56,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 18px;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   padding: 0px 10px;
 }
 

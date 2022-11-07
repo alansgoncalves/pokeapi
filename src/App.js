@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPokemons = async () => {
     try {
@@ -16,6 +17,7 @@ function App() {
       });
       const results = await Promise.all(promises);
       setPokemons(results);
+      setLoading(false);
     } catch (error) {}
   };
   useEffect(() => {
@@ -26,7 +28,11 @@ function App() {
     <div className="App">
       <NavBar />
       <SearchBar />
-      <Pokedex pokemons={pokemons} />
+      {loading ? (
+        <div>Carregando Pokemons...</div>
+      ) : (
+        <Pokedex pokemons={pokemons} />
+      )}
     </div>
   );
 }
