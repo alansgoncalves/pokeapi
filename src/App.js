@@ -16,6 +16,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
   const [notFound, setNotFound] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const fetchPokemons = async () => {
     try {
@@ -39,7 +40,9 @@ function App() {
   };
 
   useEffect(() => {
-    loadFavoritePokemons();
+    if (!searching) {
+      loadFavoritePokemons();
+    }
   }, []);
 
   useEffect(() => {
@@ -64,6 +67,8 @@ function App() {
       return fetchPokemons();
     }
     setLoading(true);
+    setNotFound(false);
+    setSearching(true);
     const result = await searchPokemon(pokemon);
     if (!result) {
       setNotFound(true);
@@ -71,8 +76,11 @@ function App() {
       return;
     } else {
       setPokemons([result]);
+      setPage(0);
+      setTotal(1);
     }
     setLoading(false);
+    setSearching(false);
   };
 
   return (
