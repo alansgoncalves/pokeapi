@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import Pokedex from "./components/Pokedex";
 import SearchBar from "./components/SearchBar";
 import { FavoriteProvider } from "./context/FavoriteContext";
+import "./index.css";
 
 const localStorageKey = "favorite_pokemon";
 
@@ -14,6 +15,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
+  const [notFound, setNotFound] = useState(false);
 
   const fetchPokemons = async () => {
     try {
@@ -60,7 +62,9 @@ function App() {
     setLoading(true);
     const result = await searchPokemon(pokemon);
     if (!result) {
-      return console.log("pokemon não encontrado!");
+      setNotFound(true);
+      setLoading(false);
+      return;
     } else {
       setPokemons([result]);
     }
@@ -77,8 +81,8 @@ function App() {
       <div className="App">
         <NavBar />
         <SearchBar getSearch={getSearch} />
-        {loading ? (
-          <div>Carregando Pokemons...</div>
+        {notFound ? (
+          <div className="found-txt">Pokemon não encontrado!</div>
         ) : (
           <Pokedex
             loading={loading}
