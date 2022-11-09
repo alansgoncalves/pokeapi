@@ -6,6 +6,8 @@ import Pokedex from "./components/Pokedex";
 import SearchBar from "./components/SearchBar";
 import { FavoriteProvider } from "./context/FavoriteContext";
 
+const localStorageKey = "favorite_pokemons";
+
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [page, setPage] = useState(1);
@@ -26,6 +28,17 @@ function App() {
       setTotal(Math.ceil(data.count / 25));
     } catch (error) {}
   };
+
+  const FavPokemons = () => {
+    const pokemons =
+      JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
+    setFavorites(pokemons);
+  };
+
+  useEffect(() => {
+    FavPokemons();
+  }, [page]);
+
   useEffect(() => {
     fetchPokemons();
   }, [page]);
@@ -39,6 +52,7 @@ function App() {
       updated.push(name);
     }
     setFavorites(updated);
+    window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
   };
 
   return (
