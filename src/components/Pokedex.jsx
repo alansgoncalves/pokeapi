@@ -19,7 +19,7 @@ const Pokedex = (props) => {
   return (
     <div>
       <div className="cont-pagination">
-        <h1>Pokedex</h1>
+        <h1 className="title-pokedex">Pokemons</h1>
         <Pagination
           page={page + 1}
           totalPages={total}
@@ -28,7 +28,7 @@ const Pokedex = (props) => {
         />
       </div>
       {loading ? (
-        <div>Carregando Pokemons...</div>
+        <div className="loading-poke">Carregando Pokemons...</div>
       ) : (
         <div className="poke-list">
           {pokemons.map((pokemon, index) => {

@@ -12,7 +12,9 @@ const NavBar = () => {
         <img src={Logo} alt="" width="160px" />
       </div>
       <div className="heart-navbar">
-        &#10084;&#65039; {favoritePokemons.length}
+        <p>Favoritos&nbsp;</p>
+        <p>&#10084;&#65039;</p>
+        <p>&nbsp;{favoritePokemons.length}</p>
       </div>
     </div>
   );

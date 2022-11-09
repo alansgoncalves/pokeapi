@@ -8,7 +8,7 @@ const Pagination = (props) => {
         <div>⬅️</div>
       </button>
       <p className="pagi-text">
-        {page} de {totalPages}
+        &nbsp;{page} de {totalPages}&nbsp;
       </p>
       <button onClick={onRightClick}>
         <div>➡️</div>

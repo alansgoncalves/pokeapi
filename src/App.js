@@ -21,7 +21,7 @@ function App() {
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-      const data = await getPokemons(25, 25 * page);
+      const data = await getPokemons(24, 24 * page);
       const promises = data.results.map(async (pokemon) => {
         return await getPokemonsData(pokemon.url);
       });

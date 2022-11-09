@@ -21,3 +21,8 @@ code {
   font-size: 1.25rem;
   padding: 20px;
 }
+
+.loading-poke {
+  display: flex;
+  justify-content: center;
+}
