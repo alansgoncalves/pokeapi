@@ -6,6 +6,9 @@ const SearchBar = (props) => {
 
   const handleChange = (e) => {
     setSearch(e.target.value.toLowerCase());
+    if (e.target.value.length === 0) {
+      getSearch(null);
+    }
   };
 
   const handleClick = async (e) => {

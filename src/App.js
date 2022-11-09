@@ -28,6 +28,7 @@ function App() {
       setPokemons(results);
       setLoading(false);
       setTotal(Math.ceil(data.count / 25));
+      setNotFound(false);
     } catch (error) {}
   };
 
@@ -59,6 +60,9 @@ function App() {
   };
 
   const getSearch = async (pokemon) => {
+    if (!pokemon) {
+      return fetchPokemons();
+    }
     setLoading(true);
     const result = await searchPokemon(pokemon);
     if (!result) {
