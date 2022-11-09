@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { getPokemons, getPokemonsData } from "./api";
+import { getPokemons, getPokemonsData, searchPokemon } from "./api";
 import NavBar from "./components/NavBar";
 import Pokedex from "./components/Pokedex";
 import SearchBar from "./components/SearchBar";
 import { FavoriteProvider } from "./context/FavoriteContext";
 
-const localStorageKey = "favorite_pokemons";
+const localStorageKey = "favorite_pokemon";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
@@ -29,17 +29,18 @@ function App() {
     } catch (error) {}
   };
 
-  const FavPokemons = () => {
+  const loadFavoritePokemons = () => {
     const pokemons =
       JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
     setFavorites(pokemons);
   };
 
   useEffect(() => {
-    FavPokemons();
-  }, [page]);
+    loadFavoritePokemons();
+  }, []);
 
   useEffect(() => {
+    console.log("todos os favoritos TODOS");
     fetchPokemons();
   }, [page]);
 
@@ -55,6 +56,17 @@ function App() {
     window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
   };
 
+  const getSearch = async (pokemon) => {
+    setLoading(true);
+    const result = await searchPokemon(pokemon);
+    if (!result) {
+      return console.log("pokemon não encontrado!");
+    } else {
+      setPokemons([result]);
+    }
+    setLoading(false);
+  };
+
   return (
     <FavoriteProvider
       value={{
@@ -64,7 +76,7 @@ function App() {
     >
       <div className="App">
         <NavBar />
-        <SearchBar />
+        <SearchBar getSearch={getSearch} />
         {loading ? (
           <div>Carregando Pokemons...</div>
         ) : (
