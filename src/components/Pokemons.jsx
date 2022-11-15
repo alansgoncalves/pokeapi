@@ -1,21 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import FavoriteContext from "../context/FavoriteContext";
 
 const Pokemons = (props) => {
   const { pokemon } = props;
-  const { favoritePokemons, updateFavoritePokemons } =
-    useContext(FavoriteContext);
+  const { AddPokemons } = useContext(FavoriteContext);
 
   const redHeart = "❤️";
   const blackHeart = "🖤";
 
-  const updateColorHeart = favoritePokemons.includes(pokemon.name)
-    ? redHeart
-    : blackHeart;
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const clickHeart = (e) => {
     e.preventDefault();
-    updateFavoritePokemons(pokemon.name);
+    AddPokemons(pokemon);
+    setIsFavorite((previousState) => !previousState);
   };
 
   return (
@@ -39,7 +37,7 @@ const Pokemons = (props) => {
             })}
           </div>
           <button onClick={clickHeart}>
-            <div className="fav-poke">{updateColorHeart}</div>
+            <div className="fav-poke">{isFavorite ? redHeart : blackHeart}</div>
           </button>
         </div>
       </div>

@@ -4,7 +4,6 @@ import { getPokemons, getPokemonsData, searchPokemon } from "../api";
 import NavBar from "../components/NavBar";
 import Pokedex from "../components/Pokedex";
 import SearchBar from "../components/SearchBar";
-import { FavoriteProvider } from "../context/FavoriteContext";
 import "../index.css";
 
 const localStorageKey = "favorite_pokemon";
@@ -84,28 +83,21 @@ const Home = () => {
   };
 
   return (
-    <FavoriteProvider
-      value={{
-        favoritePokemons: favorites,
-        updateFavoritePokemons: updateFavoritePokemons,
-      }}
-    >
-      <div className="App">
-        <NavBar />
-        <SearchBar getSearch={getSearch} />
-        {notFound ? (
-          <div className="found-txt">Pokemon não encontrado!</div>
-        ) : (
-          <Pokedex
-            loading={loading}
-            pokemons={pokemons}
-            page={page}
-            setPage={setPage}
-            total={total}
-          />
-        )}
-      </div>
-    </FavoriteProvider>
+    <div className="App">
+      <NavBar />
+      <SearchBar getSearch={getSearch} />
+      {notFound ? (
+        <div className="found-txt">Pokemon não encontrado!</div>
+      ) : (
+        <Pokedex
+          loading={loading}
+          pokemons={pokemons}
+          page={page}
+          setPage={setPage}
+          total={total}
+        />
+      )}
+    </div>
   );
 };
 

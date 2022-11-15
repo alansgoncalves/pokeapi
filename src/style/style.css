@@ -66,6 +66,13 @@
   justify-content: center;
 }
 
+.title-pokedex2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 .poke-list {
   display: flex;
   flex-direction: row;
@@ -153,4 +160,11 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.favorites-navbar {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 20px;
+  cursor: pointer;
 }
