@@ -10,7 +10,6 @@ const localStorageKey = "favorite_pokemon";
 
 const FavoritePokemons = () => {
   const { favoritePokemons } = useContext(FavoriteContext);
-  console.log("teste", favoritePokemons);
   const [pokemons, setPokemons] = useState([]);
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import FavoriteContext from "../context/FavoriteContext";
 
+const getPokemonsLocalStorage = () => {
+  return localStorage.getItem("fav_pokemons") || [];
+};
+
 const FavPokemonsProvider = ({ children }) => {
   const [favoritePokemons, setFavoritePokemons] = useState([]);
 
@@ -13,7 +17,20 @@ const FavPokemonsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("fav_pokemons", JSON.stringify(favoritePokemons));
+    const data = getPokemonsLocalStorage();
+    if (!data) {
+      localStorage.setItem("fav_pokemons", JSON.stringify([]));
+    }
+  }, []);
+
+  useEffect(() => {
+    const data = getPokemonsLocalStorage();
+    if (data) {
+      localStorage.setItem(
+        "fav_pokemons",
+        JSON.stringify(...data, ...favoritePokemons)
+      );
+    }
   }, [favoritePokemons]);
 
   return (

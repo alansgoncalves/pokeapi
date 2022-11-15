@@ -45,7 +45,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log("todos os favoritos TODOS");
     fetchPokemons();
   }, [page]);
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FavoriteContext from "../context/FavoriteContext";
 
 const Pokemons = (props) => {
@@ -13,8 +13,15 @@ const Pokemons = (props) => {
   const clickHeart = (e) => {
     e.preventDefault();
     AddPokemons(pokemon);
-    setIsFavorite((previousState) => !previousState);
+    // setIsFavorite((previousState) => !previousState);
   };
+
+  useEffect(() => {
+    const storage = localStorage.getItem("fav_pokemons") || [];
+    console.log("teste", storage);
+    const favPokemon = storage.some((poke) => poke.name === pokemon.name);
+    // setIsFavorite(favPokemon);
+  }, []);
 
   return (
     <div className="pokemon-card">
